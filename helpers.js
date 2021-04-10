@@ -35,7 +35,7 @@ const getSpendingReceipt = (cost, transactions) => {
       transaction.spentPoints = transaction.points;
       receipt.push({
         payer: transaction.payer,
-        points: -Math.abs(transaction.points),
+        points: -Math.abs(currentAvailablePoints),
       });
       // remainingPointsToSpend is greater than the current transaction available points
     } else {
@@ -47,6 +47,7 @@ const getSpendingReceipt = (cost, transactions) => {
       break;
     }
   }
+
   // merges payers on receipt, and returns merged data
   return receipt.reduce((a, c) => {
     let x = a.find((e) => e.payer === c.payer);
@@ -75,7 +76,6 @@ const getAvailablePointsTotal = (transactions) => {
 const getAvailablePointsByPayer = (transactions) => {
   const pointsByPayer = {};
   for (transaction of transactions) {
-    console.log(transaction);
     if (!pointsByPayer.hasOwnProperty(transaction.payer)) {
       pointsByPayer[transaction.payer] =
         transaction.points - transaction.spentPoints;

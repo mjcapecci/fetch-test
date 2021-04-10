@@ -11,7 +11,7 @@ router.post('/spend', pointsRules(), validate, (req, res) => {
     const receipt = getSpendingReceipt(points, UserData);
     res.status(200).json(receipt);
   } catch (error) {
-    res.status(402).json({ msg: error.message });
+    res.status(400).json({ msg: error.message });
   }
 });
 
