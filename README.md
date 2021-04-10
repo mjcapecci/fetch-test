@@ -17,5 +17,5 @@ With the server running, you have access to the following routes:
 | Type | Endpoint           | Description                                                                                        |
 | ---- | ------------------ | -------------------------------------------------------------------------------------------------- |
 | POST | /api/transactions  | Adds a new transaction and returns the added transaction                                           |
-| GET  | /api/points/totals | Returns an list of point totals itemized by payer                                                  |
+| GET  | /api/points/totals | Returns a list of point totals itemized by payer                                                   |
 | POST | /api/points/spend  | Spends points and returns a receipt of the total points deducted from each respective payer's pool |
