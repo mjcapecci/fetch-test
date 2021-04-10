@@ -14,7 +14,7 @@ After the app is installed, you can start the server by running `npm run start`.
 
 With the server running, you have access to the following routes:
 
-| Type | Endpoint           | description                                                                                        |
+| Type | Endpoint           | Description                                                                                        |
 | ---- | ------------------ | -------------------------------------------------------------------------------------------------- |
 | POST | /api/transactions  | Adds a new transaction and returns the added transaction                                           |
 | GET  | /api/points/totals | Returns an list of point totals itemized by payer                                                  |
