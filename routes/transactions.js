@@ -1,18 +1,25 @@
 const express = require('express');
 const router = express.Router();
+const moment = require('moment');
 const UserData = require('../UserData');
-const { sortByTimestamp } = require('../helpers');
+const validate = require('../middleware/validate');
+const transactionRules = require('../middleware/rules/transactionRules');
 
-router.get('/', (req, res) => {
-  res.status(200).json(sortByTimestamp(UserData));
-});
+router.post('/', transactionRules(), validate, (req, res) => {
+  const newTransaction = {
+    payer: req.body.payer,
+    points: req.body.points,
+    spentPoints: 0,
+    timestamp: Date.now(),
+  };
 
-router.post('/', (req, res) => {
-  const { payer, points } = req.body;
+  UserData.push(newTransaction);
 
-  UserData.push({ payer, points, timestamp: Date.now() });
-
-  res.status(200).json(UserData);
+  res.status(200).json({
+    payer: newTransaction.payer,
+    points: newTransaction.points,
+    timestamp: moment(Date.now()).format('YYYY-DD-MMTHH:MM:ss'),
+  });
 });
 
 module.exports = router;
